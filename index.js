@@ -1,29 +1,4 @@
 
-class Withdrawal {
-
-  constructor(amount, account) {
-    this.amount = amount;
-    this.account = account;
-  }
-
-  commit() {
-    this.account.balance -= this.amount;
-  }
-
-}
-
-class Deposit {
-  // with new myAccount, pass in the account that deposit is for.
-  constructor(amount, account) {
-    this.amount = amount;
-    this.account = account;
-  }
-  // update balance in account
-  commit() {
-    this.account.balance += this.amount;
-  }
-}
-
 class Account {
   constructor(username) {
     this.username = username;
@@ -32,8 +7,26 @@ class Account {
   }
 }
 
+class Transaction {
+  constructor(amount,account) {
+    this.amount = amount;
+    this.account = account;
+  }
+}
 
+class Deposit extends Transaction {
+  // update balance in account
+  commit() {
+    this.account.balance += this.amount;
+  }
+}
 
+class Withdrawal extends Transaction {
+  commit() {
+    this.account.balance -= this.amount;
+  }
+
+}
 
 // DRIVER CODE BELOW
 // We use the code below to "drive" the application logic above and make sure it's working as expected
